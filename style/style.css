@@ -33,6 +33,10 @@ html,body {
     text-align: center;
     background-color: #EAEAEA;
     border-radius: 15px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
 }
 
 .btn:active {
@@ -92,8 +96,19 @@ html,body {
 
     .btn {
         font-size: 40px;
-        height: 60px;
+        width: 25%;
+        height: 25%;
+        color: black;
     }
+
+    .equals {
+        color: #EFEFEF;
+    }
+
+    .clear {
+        color: white;
+    }
+
 
     .display_result {
         height: 60px;
