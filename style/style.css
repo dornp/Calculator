@@ -18,7 +18,6 @@ html,body {
 }
 
 .calculator {
-    /* margin: 100px auto; */
     width: 33%;
     padding: 30px;
     background-color: #525252;
@@ -45,12 +44,12 @@ html,body {
     display: flex;
 }
 
-.btn.equals {
-    background-color: rgb(228, 180, 91);
+.equals {
+    background-color: rgb(230, 176, 76);
     color: #EFEFEF;
 }
 
-.btn.equals:active {
+.equals:active {
     background-color: rgb(193, 151, 74);
 }
 
@@ -60,12 +59,72 @@ html,body {
     background-color: #CFE0CE;
     border-radius: 20px;
     margin-bottom: 40px;
+    padding-right: 5px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 90px;
     font-weight: bold;
     text-align: right;
-    padding: 0 10px;
     overflow: auto;
 
+}
+
+.clear {
+    background-color: rgb(226, 82, 82);
+    color: white;
+}
+
+.clear:active {
+    background-color: rgb(229, 54, 54);;
+}
+
+/* Media for phones */
+@media (max-width: 500px) {
+
+    .container {
+        overflow: auto;
+    }
+
+    .calculator {
+        width: 80%;
+        height: auto;
+        padding: 20px;
+    }
+
+    .btn {
+        font-size: 40px;
+        height: 60px;
+    }
+
+    .display_result {
+        height: 60px;
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+}
+
+/* media for ipads */
+@media(min-width: 501px) and (max-width: 912px) {
+    
+    .calculator {
+        width: 70%;
+        height: auto;
+        overflow: auto;
+    }
+
+    .display_result {
+        font-size: 80px;
+    }
+}
+
+/* media lanscape */
+@media(min-width: 913px) and (max-width: 1180px) {
+    .calculator {
+        width: 60%;
+    }
+
+    .display_result {
+        padding-top: 8px;
+        font-size: 75px;
+    }
 }
 
