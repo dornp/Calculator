@@ -32,28 +32,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btns.forEach(item => {
         item.addEventListener('click', () => {
+            let result = display.textContent;
 
-            if (display.textContent === '0') {
+            if (result === '0') {
                 if (!isNaN(+item.value) && typeof(+item.value) === 'number') {
-                    display.textContent = item.value;
+                    result = item.value;
                 }
                 
+            } else if (item.value === '+' || item.value === '-' || item.value === 'x' || item.value === '/')  {
+                if (operator === '') {
+                    operator = item.value;
+                    result += item.value;
+                }
             } else {
-                display.textContent += item.value;
+                result += item.value;
             }
 
             if (item.value === 'C') {
-                display.textContent = '0';
+                result = '0';
+                operator = '';
             }
-
-            if (item.value === '+' || item.value === '-' || item.value === 'x' || item.value === '/') {
-                operator = item.value;
-            }
-            console.log(item.value);
+            
             if (item.value === '=') {
-                let arr = display.textContent.split(/[x=+-\/]/);
+                let arr = result.split(/[x=+-\/]/);
                 let res = 0;
-                console.log(arr);
                 if (operator === '+') {
                     res = Number(arr[0]) + Number(arr[1]);
                 } else if (operator === '-') {
@@ -63,9 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (operator === '/') {
                     res = Number(arr[0]) / Number(arr[1]);
                 }
-                display.textContent += res;
+                result += res;
             }
+
+            display.textContent = result;
     
+            
             
         });
     });
