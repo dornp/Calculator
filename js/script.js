@@ -34,48 +34,41 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('click', () => {
             let result = display.textContent;
 
-            if (result === '0') {
-                if (!isNaN(+item.value) && typeof(+item.value) === 'number') {
-                    result = item.value;
+            if (result.indexOf('=') === -1 || item.value === 'C') {
+                if (result === '0') {
+                    if (!isNaN(+item.value) && typeof(+item.value) === 'number') {
+                        result = item.value;
+                    }   
+                } else if (item.value === '+' || item.value === '-' || item.value === 'x' || item.value === '/') {
+                    if (operator === '') {
+                        operator = item.value;
+                        result += item.value;
+                    }
+                } else if (item.value === 'C') {
+                    result = '0';
+                    operator = '';
+                } else if (item.value === '=') {
+                    let arr = result.split(/[x=+-\/]/);
+                    let res = 0;
+                    if (operator === '+') {
+                        res = Number(arr[0]) + Number(arr[1]);
+                    } else if (operator === '-') {
+                        res = Number(arr[0]) - Number(arr[1]);
+                    } else if (operator === 'x') {
+                        res = Number(arr[0]) * Number(arr[1]);
+                    } else if (operator === '/') {
+                        res = Number(arr[0]) / Number(arr[1]);
+                    }
+                    result += '=' + res;
                 }
-                
-            } else if (item.value === '+' || item.value === '-' || item.value === 'x' || item.value === '/')  {
-                if (operator === '') {
-                    operator = item.value;
+                else {
                     result += item.value;
                 }
-            } else {
-                result += item.value;
-            }
-
-            if (item.value === 'C') {
-                result = '0';
-                operator = '';
-            }
-            
-            if (item.value === '=') {
-                let arr = result.split(/[x=+-\/]/);
-                let res = 0;
-                if (operator === '+') {
-                    res = Number(arr[0]) + Number(arr[1]);
-                } else if (operator === '-') {
-                    res = Number(arr[0]) - Number(arr[1]);
-                } else if (operator === 'x') {
-                    res = Number(arr[0]) * Number(arr[1]);
-                } else if (operator === '/') {
-                    res = Number(arr[0]) / Number(arr[1]);
-                }
-                result += res;
             }
 
             display.textContent = result;
-    
-            
-            
         });
     });
-    
-
 });
 
 
