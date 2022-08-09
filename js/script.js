@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!isNaN(+item.value) && typeof(+item.value) === 'number') {
                         result = item.value;
                     }   
-                } else if (item.value === '+' || item.value === '-' || item.value === 'x' || item.value === '/') {
+                } else if (item.value === '+' || item.value === '-' || item.value === 'x' || item.value === '/' || item.value === '%' || item.value === '√') {
                     if (operator === '') {
                         operator = item.value;
                         result += item.value;
@@ -47,8 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (item.value === 'C') {
                     result = '0';
                     operator = '';
+                } else if (item.value === '.') {
+                    const lastCharacter = +result.slice(-1);
+                    if (typeof(lastCharacter) === 'number' && !isNaN(lastCharacter)) {
+                        result += item.value;
+                    }
                 } else if (item.value === '=') {
-                    let arr = result.split(/[x=+-\/]/);
+                    let arr = result.split(/x|\=|\%|√|\+|\-|\//);
                     let res = 0;
                     if (operator === '+') {
                         res = Number(arr[0]) + Number(arr[1]);
@@ -58,6 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         res = Number(arr[0]) * Number(arr[1]);
                     } else if (operator === '/') {
                         res = Number(arr[0]) / Number(arr[1]);
+                    } else if (operator === '%') {
+                        res = Number(arr[0]) / 100;
+                    } else if (operator === '√') {
+                        res = Math.sqrt(Number(arr[0]));
                     }
                     result += '=' + res;
                 }
